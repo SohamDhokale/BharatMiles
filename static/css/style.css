@@ -186,6 +186,8 @@ html {
     display: flex;
     align-items: center;
     overflow: hidden;
+    padding-top: 80px; /* Account for fixed navbar */
+    margin-bottom: 0;
 }
 
 .hero-overlay {
@@ -254,6 +256,10 @@ html {
 /* Stats Section */
 .stats-section {
     padding: 4rem 0;
+    position: relative;
+    z-index: 10;
+    background: var(--dark-secondary);
+    margin-top: -2px; /* Eliminate any gap */
 }
 
 .stat-item {
@@ -272,6 +278,13 @@ html {
 }
 
 /* Services Section */
+.services-preview {
+    position: relative;
+    z-index: 10;
+    background: var(--dark-bg);
+    padding: 5rem 0;
+}
+
 .service-card {
     transition: all 0.3s ease;
     border: 1px solid transparent;
@@ -724,16 +737,75 @@ html {
     border-left: 4px solid #dc3545;
 }
 
+/* Section Separators and Professional Styling */
+.section-separator {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
+    margin: 0 auto;
+    width: 100px;
+    position: relative;
+}
+
+.section-separator::before,
+.section-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-orange);
+    transform: translateY(-50%);
+}
+
+.section-separator::before {
+    left: -15px;
+}
+
+.section-separator::after {
+    right: -15px;
+}
+
+/* Professional Section Styling */
+.why-choose {
+    position: relative;
+    z-index: 10;
+    background: var(--dark-secondary);
+    padding: 5rem 0;
+}
+
+.cta-section {
+    position: relative;
+    z-index: 10;
+    background: var(--dark-bg);
+    padding: 5rem 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
+}
+
 /* Additional utility classes */
 .section-title {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-orange);
+    border-radius: 2px;
 }
 
 .section-subtitle {
     font-size: 1.2rem;
     margin-bottom: 3rem;
+    opacity: 0.9;
 }
 
 /* Hover effects for team cards */
@@ -757,4 +829,63 @@ html {
     background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.05) 100%);
     border-color: var(--primary-orange);
     transform: translateY(-5px);
+}
+
+/* Improved Section Transitions */
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+    opacity: 0.5;
+}
+
+/* Enhanced Professional Layout */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--dark-secondary));
+    z-index: 1;
+}
+
+/* Smooth Section Flow */
+.stats-section,
+.services-preview,
+.why-choose,
+.cta-section {
+    border-top: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+/* Professional Glowing Effects */
+.section-title::after {
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+.section-separator {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+}
+
+/* Enhanced Card Interactions */
+.stat-item {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.02) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.stat-item:hover {
+    border-color: var(--primary-orange);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.1);
 }
