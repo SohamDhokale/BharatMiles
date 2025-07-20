@@ -20,10 +20,12 @@ Preferred communication style: Simple, everyday language.
 
 ### Backend Architecture
 - **Framework**: Flask (Python web framework)
+- **Database**: PostgreSQL with SQLAlchemy ORM
 - **Session Management**: Flask's built-in session handling with secret key
-- **Data Storage**: In-memory storage using Python lists (temporary solution)
+- **Data Storage**: PostgreSQL database with proper table structure
 - **Form Handling**: Flask's request object for form data processing
 - **Flash Messages**: Flask's flash messaging system for user feedback
+- **Models**: ContactSubmission and ExportInquiry models for form data
 
 ### Template Structure
 - **Base Template**: `base.html` provides common layout and navigation
@@ -97,16 +99,21 @@ Preferred communication style: Simple, everyday language.
 
 ## Development Notes
 
-### Current Limitations
-1. **Data Persistence**: Form submissions are lost on server restart
-2. **Scalability**: In-memory storage doesn't support multiple server instances
-3. **Form Validation**: Basic validation only, needs enhancement
-4. **Security**: Minimal security measures implemented
+### Database Schema
+- **contact_submissions**: Stores contact form submissions with fields for name, email, phone, company, message, timestamp, and read status
+- **export_inquiries**: Stores export inquiry forms with fields for name, email, company, product category, quantity, destination country, additional details, timestamp, read status, and processing status
+
+### Current Features
+1. **Data Persistence**: PostgreSQL database ensures data survives server restarts
+2. **Form Processing**: Complete form handling with validation and error messages
+3. **Admin Interface**: Basic admin panel to view all form submissions at /admin/submissions
+4. **Database Models**: Proper SQLAlchemy models with relationships and constraints
+5. **Professional Design**: Dark theme with orange/red color scheme, animations, and responsive layout
 
 ### Recommended Enhancements
-1. **Database Integration**: Implement persistent data storage
-2. **Admin Panel**: Add administrative interface for managing submissions
-3. **Email Integration**: Implement email notifications for form submissions
-4. **Enhanced Validation**: Add comprehensive form validation and sanitization
+1. **Admin Authentication**: Add login system for admin panel security
+2. **Email Integration**: Implement email notifications for form submissions
+3. **Enhanced Validation**: Add comprehensive form validation and sanitization
+4. **Export Functionality**: Add CSV/Excel export for submission data
 5. **Analytics**: Integrate tracking for business insights
 6. **SEO Optimization**: Add meta tags, structured data, and SEO enhancements

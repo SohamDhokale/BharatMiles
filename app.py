@@ -1,13 +1,71 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from sqlalchemy.orm import DeclarativeBase
 
-app = Flask(__name__)
-app.secret_key = os.environ.get("SESSION_SECRET", "bharatmiles-secret-key-2025")
+class Base(DeclarativeBase):
+    pass
 
-# In-memory storage for form submissions
-form_submissions = []
-inquiries = []
+db = SQLAlchemy(model_class=Base)
+
+def create_app():
+    app = Flask(__name__)
+    app.secret_key = os.environ.get("SESSION_SECRET", "bharatmiles-secret-key-2025")
+    
+    # Configure the database
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+        "pool_recycle": 300,
+        "pool_pre_ping": True,
+    }
+    
+    # Initialize the app with the extension
+    db.init_app(app)
+    
+    return app
+
+app = create_app()
+
+# Database Models
+class ContactSubmission(db.Model):
+    __tablename__ = 'contact_submissions'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=True)
+    company = db.Column(db.String(100), nullable=True)
+    message = db.Column(db.Text, nullable=False)
+    submission_type = db.Column(db.String(20), default='contact')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_read = db.Column(db.Boolean, default=False)
+    
+    def __repr__(self):
+        return f'<ContactSubmission {self.name} - {self.email}>'
+
+class ExportInquiry(db.Model):
+    __tablename__ = 'export_inquiries'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    company = db.Column(db.String(100), nullable=True)
+    product_category = db.Column(db.String(100), nullable=False)
+    quantity = db.Column(db.String(100), nullable=True)
+    destination_country = db.Column(db.String(100), nullable=True)
+    additional_details = db.Column(db.Text, nullable=True)
+    submission_type = db.Column(db.String(20), default='inquiry')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_read = db.Column(db.Boolean, default=False)
+    status = db.Column(db.String(20), default='pending')
+    
+    def __repr__(self):
+        return f'<ExportInquiry {self.name} - {self.product_category}>'
+
+# Create tables
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
@@ -40,22 +98,23 @@ def submit_contact():
             flash('Please fill in all required fields.', 'error')
             return redirect(url_for('contact'))
         
-        # Store submission
-        submission = {
-            'id': len(form_submissions) + 1,
-            'name': name,
-            'email': email,
-            'phone': phone,
-            'company': company,
-            'message': message,
-            'timestamp': datetime.now(),
-            'type': 'contact'
-        }
+        # Create new contact submission
+        submission = ContactSubmission(
+            name=name,
+            email=email,
+            phone=phone,
+            company=company,
+            message=message
+        )
         
-        form_submissions.append(submission)
+        # Save to database
+        db.session.add(submission)
+        db.session.commit()
+        
         flash('Thank you for your message! We will get back to you soon.', 'success')
         
     except Exception as e:
+        db.session.rollback()
         flash('An error occurred while submitting your message. Please try again.', 'error')
     
     return redirect(url_for('contact'))
@@ -77,24 +136,25 @@ def submit_inquiry():
             flash('Please fill in all required fields.', 'error')
             return redirect(url_for('services'))
         
-        # Store inquiry
-        inquiry = {
-            'id': len(inquiries) + 1,
-            'name': name,
-            'email': email,
-            'company': company,
-            'product': product,
-            'quantity': quantity,
-            'destination': destination,
-            'details': details,
-            'timestamp': datetime.now(),
-            'type': 'inquiry'
-        }
+        # Create new export inquiry
+        inquiry = ExportInquiry(
+            name=name,
+            email=email,
+            company=company,
+            product_category=product,
+            quantity=quantity,
+            destination_country=destination,
+            additional_details=details
+        )
         
-        inquiries.append(inquiry)
+        # Save to database
+        db.session.add(inquiry)
+        db.session.commit()
+        
         flash('Your inquiry has been submitted successfully! Our team will contact you within 24 hours.', 'success')
         
     except Exception as e:
+        db.session.rollback()
         flash('An error occurred while submitting your inquiry. Please try again.', 'error')
     
     return redirect(url_for('services'))
@@ -102,9 +162,11 @@ def submit_inquiry():
 @app.route('/admin/submissions')
 def view_submissions():
     # Simple admin view to see submissions (in a real app, this would be protected)
-    all_submissions = form_submissions + inquiries
-    all_submissions.sort(key=lambda x: x['timestamp'], reverse=True)
-    return render_template('admin_submissions.html', submissions=all_submissions)
+    contact_submissions = ContactSubmission.query.order_by(ContactSubmission.created_at.desc()).all()
+    export_inquiries = ExportInquiry.query.order_by(ExportInquiry.created_at.desc()).all()
+    return render_template('admin_submissions.html', 
+                         contact_submissions=contact_submissions,
+                         export_inquiries=export_inquiries)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
