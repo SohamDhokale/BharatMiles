@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}Export Services - BharatMiles Global{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header py-5 bg-dark-secondary">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="text-center fade-in-up">
+                    <h1 class="page-title text-white mb-3">Our Export Services</h1>
+                    <p class="page-subtitle text-white-50">Comprehensive solutions for your global trade needs</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center bg-transparent">
+                            <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-primary-orange">Home</a></li>
+                            <li class="breadcrumb-item active text-white-50">Services</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Services -->
+<section class="main-services py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Agricultural Products -->
+            <div class="col-lg-6 mb-5">
+                <div class="service-detail-card bg-dark-card p-4 h-100 card-hover">
+                    <div class="service-header mb-4">
+                        <i class="fas fa-seedling fa-3x text-primary-orange mb-3"></i>
+                        <h3 class="text-white">Agricultural Products</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="text-white-50 mb-4">
+                            Export premium quality agricultural products including spices, grains, pulses, and organic produce directly from India's finest farms.
+                        </p>
+                        <ul class="service-features list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Premium Basmati Rice</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Authentic Indian Spices</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Organic Pulses & Lentils</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Fresh & Dried Fruits</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Tea & Coffee</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Textiles & Garments -->
+            <div class="col-lg-6 mb-5">
+                <div class="service-detail-card bg-dark-card p-4 h-100 card-hover">
+                    <div class="service-header mb-4">
+                        <i class="fas fa-tshirt fa-3x text-primary-orange mb-3"></i>
+                        <h3 class="text-white">Textiles & Garments</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="text-white-50 mb-4">
+                            High-quality fabrics, ready-made garments, and traditional Indian textiles crafted by skilled artisans for international markets.
+                        </p>
+                        <ul class="service-features list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Cotton & Silk Fabrics</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Ready-made Garments</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Traditional Sarees & Dress Materials</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Home Textiles</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Handicraft Textiles</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Engineering Goods -->
+            <div class="col-lg-6 mb-5">
+                <div class="service-detail-card bg-dark-card p-4 h-100 card-hover">
+                    <div class="service-header mb-4">
+                        <i class="fas fa-cogs fa-3x text-primary-orange mb-3"></i>
+                        <h3 class="text-white">Engineering Goods</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="text-white-50 mb-4">
+                            Precision-engineered products and machinery manufactured to international quality standards for various industrial applications.
+                        </p>
+                        <ul class="service-features list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Auto Components</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Precision Tools</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Industrial Machinery</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Electronic Components</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Hardware & Fasteners</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pharmaceuticals -->
+            <div class="col-lg-6 mb-5">
+                <div class="service-detail-card bg-dark-card p-4 h-100 card-hover">
+                    <div class="service-header mb-4">
+                        <i class="fas fa-pills fa-3x text-primary-orange mb-3"></i>
+                        <h3 class="text-white">Pharmaceuticals</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="text-white-50 mb-4">
+                            WHO-GMP certified pharmaceutical products including generic medicines, APIs, and healthcare supplements for global healthcare needs.
+                        </p>
+                        <ul class="service-features list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Generic Medicines</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Active Pharmaceutical Ingredients</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Ayurvedic Products</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Medical Devices</span></li>
+                            <li class="mb-2"><i class="fas fa-check text-primary-orange me-2"></i><span class="text-white-50">Nutritional Supplements</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Export Process -->
+<section class="export-process py-5 bg-dark-secondary">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title text-white">Our Export Process</h2>
+            <p class="section-subtitle text-white-50">Streamlined process for seamless international trade</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card bg-dark-card p-4 text-center h-100 card-hover">
+                    <div class="process-step text-primary-orange mb-3">01</div>
+                    <i class="fas fa-search fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Product Sourcing</h5>
+                    <p class="text-white-50 small">Identify and source quality products from verified suppliers and manufacturers.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card bg-dark-card p-4 text-center h-100 card-hover">
+                    <div class="process-step text-primary-orange mb-3">02</div>
+                    <i class="fas fa-clipboard-check fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Quality Control</h5>
+                    <p class="text-white-50 small">Rigorous quality inspection and testing to meet international standards.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card bg-dark-card p-4 text-center h-100 card-hover">
+                    <div class="process-step text-primary-orange mb-3">03</div>
+                    <i class="fas fa-file-alt fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Documentation</h5>
+                    <p class="text-white-50 small">Handle all export documentation, customs clearance, and certifications.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card bg-dark-card p-4 text-center h-100 card-hover">
+                    <div class="process-step text-primary-orange mb-3">04</div>
+                    <i class="fas fa-shipping-fast fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Logistics</h5>
+                    <p class="text-white-50 small">Efficient packaging, shipping, and delivery to your destination worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Inquiry Form -->
+<section class="inquiry-form py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-card bg-dark-card p-5 card-hover">
+                    <div class="text-center mb-4">
+                        <h3 class="text-white mb-3">Request a Quote</h3>
+                        <p class="text-white-50">Get in touch for your export requirements</p>
+                    </div>
+                    
+                    <form method="POST" action="{{ url_for('submit_inquiry') }}" class="inquiry-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label text-white">Full Name *</label>
+                                <input type="text" class="form-control form-control-dark" id="name" name="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label text-white">Email Address *</label>
+                                <input type="email" class="form-control form-control-dark" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="company" class="form-label text-white">Company Name</label>
+                                <input type="text" class="form-control form-control-dark" id="company" name="company">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="product" class="form-label text-white">Product Category *</label>
+                                <select class="form-control form-control-dark" id="product" name="product" required>
+                                    <option value="">Select Product Category</option>
+                                    <option value="Agricultural Products">Agricultural Products</option>
+                                    <option value="Textiles & Garments">Textiles & Garments</option>
+                                    <option value="Engineering Goods">Engineering Goods</option>
+                                    <option value="Pharmaceuticals">Pharmaceuticals</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="quantity" class="form-label text-white">Required Quantity</label>
+                                <input type="text" class="form-control form-control-dark" id="quantity" name="quantity" placeholder="e.g., 1000 kg">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="destination" class="form-label text-white">Destination Country</label>
+                                <input type="text" class="form-control form-control-dark" id="destination" name="destination">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="details" class="form-label text-white">Additional Details</label>
+                            <textarea class="form-control form-control-dark" id="details" name="details" rows="4" placeholder="Please provide more details about your requirements..."></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary-orange btn-lg btn-hover">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Inquiry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Services -->
+<section class="additional-services py-5 bg-dark-secondary">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title text-white">Additional Services</h2>
+            <p class="section-subtitle text-white-50">Complete export solutions under one roof</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="additional-service-card bg-dark-card p-4 text-center h-100 card-hover">
+                    <i class="fas fa-certificate fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Compliance & Certification</h5>
+                    <p class="text-white-50">Ensure all products meet international quality and safety standards with proper certifications.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="additional-service-card bg-dark-card p-4 text-center h-100 card-hover">
+                    <i class="fas fa-handshake fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Trade Financing</h5>
+                    <p class="text-white-50">Flexible financing solutions including letters of credit and payment terms to support your business.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="additional-service-card bg-dark-card p-4 text-center h-100 card-hover">
+                    <i class="fas fa-chart-line fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Market Research</h5>
+                    <p class="text-white-50">Comprehensive market analysis and insights to help you make informed export decisions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

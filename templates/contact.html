@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - BharatMiles Global{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header py-5 bg-dark-secondary">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="text-center fade-in-up">
+                    <h1 class="page-title text-white mb-3">Contact Us</h1>
+                    <p class="page-subtitle text-white-50">Get in touch for your export requirements</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center bg-transparent">
+                            <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-primary-orange">Home</a></li>
+                            <li class="breadcrumb-item active text-white-50">Contact</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="contact-info py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="contact-card bg-dark-card p-4 h-100 text-center card-hover">
+                    <i class="fas fa-map-marker-alt fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Office Address</h5>
+                    <p class="text-white-50">
+                        BharatMiles Global Export House<br>
+                        A-Block, Export Promotion Industrial Park<br>
+                        Andheri East, Mumbai - 400069<br>
+                        Maharashtra, India
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="contact-card bg-dark-card p-4 h-100 text-center card-hover">
+                    <i class="fas fa-phone fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Phone & Fax</h5>
+                    <p class="text-white-50">
+                        <strong>Phone:</strong> +91 98765 43210<br>
+                        <strong>Landline:</strong> +91 22 2687 5432<br>
+                        <strong>Fax:</strong> +91 22 2687 5433<br>
+                        <strong>WhatsApp:</strong> +91 98765 43210
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="contact-card bg-dark-card p-4 h-100 text-center card-hover">
+                    <i class="fas fa-envelope fa-2x text-primary-orange mb-3"></i>
+                    <h5 class="text-white mb-3">Email Addresses</h5>
+                    <p class="text-white-50">
+                        <strong>General:</strong> info@bharatmilesglobal.com<br>
+                        <strong>Sales:</strong> sales@bharatmilesglobal.com<br>
+                        <strong>Support:</strong> support@bharatmilesglobal.com<br>
+                        <strong>Export:</strong> export@bharatmilesglobal.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section py-5 bg-dark-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-container bg-dark-card p-5 card-hover">
+                    <div class="text-center mb-5">
+                        <h2 class="text-white mb-3">Send us a Message</h2>
+                        <p class="text-white-50">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                    </div>
+                    
+                    <form method="POST" action="{{ url_for('submit_contact') }}" class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label text-white">
+                                    <i class="fas fa-user me-2 text-primary-orange"></i>Full Name *
+                                </label>
+                                <input type="text" class="form-control form-control-dark" id="name" name="name" required placeholder="Enter your full name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label text-white">
+                                    <i class="fas fa-envelope me-2 text-primary-orange"></i>Email Address *
+                                </label>
+                                <input type="email" class="form-control form-control-dark" id="email" name="email" required placeholder="Enter your email address">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label text-white">
+                                    <i class="fas fa-phone me-2 text-primary-orange"></i>Phone Number
+                                </label>
+                                <input type="tel" class="form-control form-control-dark" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="company" class="form-label text-white">
+                                    <i class="fas fa-building me-2 text-primary-orange"></i>Company Name
+                                </label>
+                                <input type="text" class="form-control form-control-dark" id="company" name="company" placeholder="Enter your company name">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label text-white">
+                                <i class="fas fa-comment me-2 text-primary-orange"></i>Message *
+                            </label>
+                            <textarea class="form-control form-control-dark" id="message" name="message" rows="6" required placeholder="Tell us about your requirements or questions..."></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary-orange btn-lg btn-hover">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Business Hours & Map -->
+<section class="business-hours py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="hours-card bg-dark-card p-4 h-100 card-hover">
+                    <h4 class="text-white mb-4">
+                        <i class="fas fa-clock text-primary-orange me-2"></i>Business Hours
+                    </h4>
+                    <div class="hours-list">
+                        <div class="hour-item d-flex justify-content-between mb-2">
+                            <span class="text-white-50">Monday - Friday:</span>
+                            <span class="text-white">9:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="hour-item d-flex justify-content-between mb-2">
+                            <span class="text-white-50">Saturday:</span>
+                            <span class="text-white">9:00 AM - 2:00 PM</span>
+                        </div>
+                        <div class="hour-item d-flex justify-content-between mb-2">
+                            <span class="text-white-50">Sunday:</span>
+                            <span class="text-primary-red">Closed</span>
+                        </div>
+                        <div class="hour-item d-flex justify-content-between">
+                            <span class="text-white-50">Emergency Support:</span>
+                            <span class="text-primary-orange">24/7 Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="map-card bg-dark-card p-4 h-100 card-hover">
+                    <h4 class="text-white mb-4">
+                        <i class="fas fa-map-marker-alt text-primary-orange me-2"></i>Find Us
+                    </h4>
+                    <div class="map-placeholder text-center py-5">
+                        <i class="fas fa-map fa-3x text-primary-orange mb-3"></i>
+                        <p class="text-white mb-3">Interactive Map</p>
+                        <p class="text-white-50 small">
+                            Our office is conveniently located in Mumbai's Export Hub,<br>
+                            easily accessible by public transport and major highways.
+                        </p>
+                        <a href="https://maps.google.com" target="_blank" class="btn btn-outline-orange btn-sm btn-hover">
+                            <i class="fas fa-external-link-alt me-2"></i>Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section py-5 bg-dark-secondary">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title text-white">Frequently Asked Questions</h2>
+            <p class="section-subtitle text-white-50">Quick answers to common questions</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item bg-dark-card border-0 mb-3">
+                        <h5 class="accordion-header">
+                            <button class="accordion-button bg-dark-card text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                What are your minimum order quantities?
+                            </button>
+                        </h5>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body bg-dark-card text-white-50">
+                                Our minimum order quantities vary by product category. For agricultural products, we typically require 1 metric ton minimum. For textiles and engineering goods, MOQ depends on the specific item. Contact us for detailed information.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item bg-dark-card border-0 mb-3">
+                        <h5 class="accordion-header">
+                            <button class="accordion-button bg-dark-card text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                How long does the export process take?
+                            </button>
+                        </h5>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body bg-dark-card text-white-50">
+                                The export timeline typically ranges from 15-30 days depending on the product type, destination country, and shipping method. We provide detailed timelines during the quotation process.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item bg-dark-card border-0 mb-3">
+                        <h5 class="accordion-header">
+                            <button class="accordion-button bg-dark-card text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Do you provide product samples?
+                            </button>
+                        </h5>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body bg-dark-card text-white-50">
+                                Yes, we provide product samples for evaluation. Sample costs and shipping charges are typically borne by the buyer, but can be adjusted against confirmed orders.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item bg-dark-card border-0">
+                        <h5 class="accordion-header">
+                            <button class="accordion-button bg-dark-card text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                What payment terms do you accept?
+                            </button>
+                        </h5>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body bg-dark-card text-white-50">
+                                We accept various payment terms including LC (Letter of Credit), TT (Telegraphic Transfer), and CAD (Cash Against Documents). Specific terms are negotiated based on order value and customer relationship.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
