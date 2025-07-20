@@ -420,3 +420,135 @@ document.querySelectorAll('form').forEach(form => {
         }
     });
 });
+
+// Mouse Glow Effects
+function initializeMouseGlowEffects() {
+    // Track mouse position for glow effects
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Apply glow effects to cards
+    const glowElements = document.querySelectorAll('.service-card, .stat-item, .floating-card');
+    
+    glowElements.forEach(element => {
+        element.addEventListener('mousemove', (e) => {
+            const rect = element.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            element.style.setProperty('--mouse-x', x + '%');
+            element.style.setProperty('--mouse-y', y + '%');
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            element.style.setProperty('--mouse-x', '50%');
+            element.style.setProperty('--mouse-y', '50%');
+        });
+    });
+
+    // Cursor glow effect
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor-glow';
+    cursor.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: all 0.1s ease;
+        opacity: 0;
+    `;
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursor.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+    });
+
+    // Enhanced button glow effects
+    const buttons = document.querySelectorAll('.btn-primary-orange, .btn-outline-orange');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.boxShadow = '0 0 30px rgba(255, 107, 53, 0.5)';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.boxShadow = '';
+        });
+    });
+}
+
+// Particle system for homepage
+function createParticleSystem() {
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection) return;
+
+    const particleContainer = document.createElement('div');
+    particleContainer.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    `;
+    heroSection.appendChild(particleContainer);
+
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 107, 53, 0.3);
+            border-radius: 50%;
+            animation: float-particle ${5 + Math.random() * 10}s linear infinite;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            opacity: ${0.3 + Math.random() * 0.7};
+        `;
+        particleContainer.appendChild(particle);
+    }
+}
+
+// Add CSS for particle animation
+const particleStyle = document.createElement('style');
+particleStyle.textContent = `
+    @keyframes float-particle {
+        0% {
+            transform: translateY(0px) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(particleStyle);
+
+// Initialize all glow effects
+document.addEventListener('DOMContentLoaded', function() {
+    initializeMouseGlowEffects();
+    createParticleSystem();
+});

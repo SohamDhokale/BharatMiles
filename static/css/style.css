@@ -889,3 +889,144 @@ section::before {
     border-color: var(--primary-orange);
     box-shadow: 0 10px 30px rgba(255, 107, 53, 0.1);
 }
+
+/* Mouse Glow Effects */
+.glow-on-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow-on-hover:hover::before {
+    width: 200px;
+    height: 200px;
+}
+
+/* Card Glow Effects */
+.service-card,
+.stat-item,
+.floating-card,
+.feature-item {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.service-card::after,
+.stat-item::after,
+.floating-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 107, 53, 0.1), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.service-card:hover::after,
+.stat-item:hover::after,
+.floating-card:hover::after {
+    opacity: 1;
+}
+
+/* Button Glow Effects */
+.btn-primary-orange,
+.btn-outline-orange {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary-orange::before,
+.btn-outline-orange::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.btn-primary-orange:hover::before,
+.btn-outline-orange:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Hero Section Glow */
+.hero-content {
+    position: relative;
+}
+
+.hero-title {
+    position: relative;
+    background: linear-gradient(45deg, #ffffff, #ff6b35, #ffffff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Navigation Glow */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.nav-link:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+/* Interactive Elements Glow */
+.scroll-indicator {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+}
+
+.scroll-indicator:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.8));
+    transform: translateX(-50%) scale(1.1);
+}
