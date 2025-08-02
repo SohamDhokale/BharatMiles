@@ -12,13 +12,13 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark-custom">
         <div class="container">
-            <a class="navbar-brand brand-text" href="{{ url_for('index') }}">
+            <a class="navbar-brand brand-text" href="/">
                 <i class="fas fa-globe-americas me-2 text-primary-orange"></i>
                 BharatMiles Global
             </a>
@@ -30,22 +30,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link nav-hover" href="{{ url_for('index') }}">
+                        <a class="nav-link nav-hover" href="/">
                             <i class="fas fa-home me-1"></i>Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-hover" href="{{ url_for('about') }}">
+                        <a class="nav-link nav-hover" href="/about">
                             <i class="fas fa-info-circle me-1"></i>About
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-hover" href="{{ url_for('services') }}">
+                        <a class="nav-link nav-hover" href="/services">
                             <i class="fas fa-shipping-fast me-1"></i>Services
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-hover" href="{{ url_for('contact') }}">
+                        <a class="nav-link nav-hover" href="/contact">
                             <i class="fas fa-envelope me-1"></i>Contact
                         </a>
                     </li>
@@ -54,20 +54,7 @@
         </div>
     </nav>
 
-    <!-- Flash Messages -->
-    <div class="container mt-5 pt-4">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
-                        <i class="fas fa-{{ 'exclamation-triangle' if category == 'error' else 'check-circle' }} me-2"></i>
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </div>
+
 
     <!-- Main Content -->
     <main>
@@ -94,10 +81,10 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h6 class="text-primary-orange mb-3">Quick Links</h6>
                     <ul class="list-unstyled">
-                        <li><a href="{{ url_for('index') }}" class="text-white-50 footer-link">Home</a></li>
-                        <li><a href="{{ url_for('about') }}" class="text-white-50 footer-link">About Us</a></li>
-                        <li><a href="{{ url_for('services') }}" class="text-white-50 footer-link">Services</a></li>
-                        <li><a href="{{ url_for('contact') }}" class="text-white-50 footer-link">Contact</a></li>
+                        <li><a href="/" class="text-white-50 footer-link">Home</a></li>
+                        <li><a href="/about" class="text-white-50 footer-link">About Us</a></li>
+                        <li><a href="/services" class="text-white-50 footer-link">Services</a></li>
+                        <li><a href="/contact" class="text-white-50 footer-link">Contact</a></li>
                     </ul>
                 </div>
                 

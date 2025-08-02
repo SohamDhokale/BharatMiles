@@ -1,9 +1,16 @@
 [build]
-  command = "pip install -r requirements.txt"
+  command = "bash build.sh"
   publish = "."
 
-[build.environment]
-  PYTHON_VERSION = "3.11"
+[[redirects]]
+  from = "/submit_contact"
+  to = "/.netlify/functions/contact"
+  status = 200
+
+[[redirects]]
+  from = "/submit_inquiry"
+  to = "/.netlify/functions/inquiry"
+  status = 200
 
 [[redirects]]
   from = "/*"

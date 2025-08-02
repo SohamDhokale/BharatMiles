@@ -13,7 +13,7 @@
                     <p class="page-subtitle text-white-50">Comprehensive solutions for your global trade needs</p>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center bg-transparent">
-                            <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-primary-orange">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/" class="text-primary-orange">Home</a></li>
                             <li class="breadcrumb-item active text-white-50">Services</li>
                         </ol>
                     </nav>
@@ -174,7 +174,7 @@
                         <p class="text-white-50">Get in touch for your export requirements</p>
                     </div>
                     
-                    <form method="POST" action="{{ url_for('submit_inquiry') }}" class="inquiry-form">
+                    <form id="inquiryForm" class="inquiry-form">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="name" class="form-label text-white">Full Name *</label>
@@ -221,7 +221,7 @@
                         </div>
                         
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary-orange btn-lg btn-hover">
+                            <button type="submit" class="btn btn-primary-orange btn-lg btn-hover" id="submitInquiryBtn">
                                 <i class="fas fa-paper-plane me-2"></i>Submit Inquiry
                             </button>
                         </div>
@@ -265,4 +265,53 @@
         </div>
     </div>
 </section>
+
+<script>
+document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitInquiryBtn');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Submitting...';
+    submitBtn.disabled = true;
+    
+    try {
+        // Get form data
+        const formData = new FormData(this);
+        const data = new URLSearchParams();
+        
+        for (let [key, value] of formData.entries()) {
+            data.append(key, value);
+        }
+        
+        // Submit to serverless function
+        const response = await fetch('/.netlify/functions/inquiry', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: data.toString()
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('Your inquiry has been submitted successfully! Our team will contact you within 24 hours.');
+            this.reset();
+        } else {
+            alert('Error: ' + (result.error || 'Something went wrong. Please try again.'));
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while submitting your inquiry. Please try again.');
+    } finally {
+        // Reset button state
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+});
+</script>
 {% endblock %}
