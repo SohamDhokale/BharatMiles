@@ -3,6 +3,10 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy.orm import DeclarativeBase
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 class Base(DeclarativeBase):
     pass
@@ -13,9 +17,18 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = os.environ.get("SESSION_SECRET", "bharatmiles-secret-key-2025")
     
-    # Configure the database with absolute path
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(basedir, 'instance', 'bharatmiles.db')}"
+    # Configure PostgreSQL database
+    DATABASE_URL = os.environ.get("DATABASE_URL")
+    
+    # If DATABASE_URL is not set, use a default local PostgreSQL connection
+    if not DATABASE_URL:
+        DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/bharatmiles"
+    
+    # Handle potential "postgres://" to "postgresql://" conversion (for Heroku compatibility)
+    if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
     app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
         "pool_recycle": 300,
         "pool_pre_ping": True,
